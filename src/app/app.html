@@ -1,0 +1,39 @@
+<igx-grid
+  [data]="data"
+  [igxGridState]
+  [autoGenerate]="false"
+  width="100%"
+  height="400px"
+  (columnVisibilityChanged)="onColumnVisibilityChanged($event)"
+  (columnPin)="onColumnPinned($event)"
+>
+  <igx-grid-toolbar>
+    <igx-grid-toolbar-actions>
+      <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
+      <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>
+    </igx-grid-toolbar-actions>
+  </igx-grid-toolbar>
+
+  <igx-column field="id" header="ID" dataType="number" [sortable]="true" width="80px"></igx-column>
+  <igx-column field="name" header="Name" dataType="string" [sortable]="true"></igx-column>
+  <igx-column field="status" header="Status" dataType="string" [sortable]="true"></igx-column>
+  <igx-column field="createdAt" header="Created At" dataType="date" [sortable]="true"></igx-column>
+</igx-grid>
+
+<section class="controls">
+  <div class="actions">
+    <button (click)="extractState()" class="btn btn-primary">Extract State</button>
+    <button (click)="applyState()" [disabled]="savedState() === null" class="btn btn-secondary">Apply State</button>
+    <button (click)="clearLog()" class="btn btn-ghost">Clear Log</button>
+  </div>
+  @if (savedState() !== null) {
+    <p class="state-hint">State saved. Modify columns via toolbar, then click <strong>Apply State</strong> — observe that <code>columnVisibilityChanged</code> and <code>columnPin</code> events are NOT emitted.</p>
+  } @else {
+    <p class="state-hint">Use the toolbar buttons to hide or pin columns, then click <strong>Extract State</strong>.</p>
+  }
+</section>
+
+<section class="event-log">
+  <h2>Event Log</h2>
+  <textarea readonly rows="14" [value]="eventLog().join('\n') || '(no events yet)'"></textarea>
+</section>
