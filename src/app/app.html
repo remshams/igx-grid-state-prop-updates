@@ -23,13 +23,23 @@
 <section class="controls">
   <div class="actions">
     <button (click)="extractState()" class="btn btn-primary">Extract State</button>
-    <button (click)="applyState()" [disabled]="savedState() === null" class="btn btn-secondary">Apply State</button>
+    <button (click)="applyState()" [disabled]="savedState() === null" class="btn btn-secondary">
+      Apply State
+    </button>
+    <button (click)="clearState()" [disabled]="savedState() === null" class="btn btn-secondary">
+      Clear State
+    </button>
     <button (click)="clearLog()" class="btn btn-ghost">Clear Log</button>
   </div>
   @if (savedState() !== null) {
-    <p class="state-hint">State saved. Modify columns via toolbar, then click <strong>Apply State</strong> — observe that <code>columnVisibilityChanged</code> and <code>columnPin</code> events are NOT emitted.</p>
+  <p class="state-hint">
+    State saved. Modify columns via toolbar, then click <strong>Apply State</strong> — observe that
+    <code>columnVisibilityChanged</code> and <code>columnPin</code> events are NOT emitted.
+  </p>
   } @else {
-    <p class="state-hint">Use the toolbar buttons to hide or pin columns, then click <strong>Extract State</strong>.</p>
+  <p class="state-hint">
+    Use the toolbar buttons to hide or pin columns, then click <strong>Extract State</strong>.
+  </p>
   }
 </section>
 

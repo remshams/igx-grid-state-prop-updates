@@ -61,6 +61,12 @@ export class App {
     this.stateDirective().setState(state);
   }
 
+  protected clearState(): void {
+    this.savedState.set(null);
+    const entry = `[${timestamp()}] State cleared`;
+    this.eventLog.update((log) => [entry, ...log]);
+  }
+
   protected clearLog(): void {
     this.eventLog.set([]);
   }
